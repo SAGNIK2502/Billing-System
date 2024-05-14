@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+  <h1>SILIGURI DA DHABA</h1>
+  <div class="container-fluid">
+   <div class="container">
+    <div class="part1">
+     <fieldset>
+      <legend>Personal Information</legend>
+      Full Name: <input type="text" id="name" value="mohan"/> <br />
+
+      Your Email: <input type="text" id="email" /><br />
+      Your Mobile: <input type="text" id="mobile" /><br />
+     </fieldset>
+    </div>
+
+    <div class="part2">
+     <fieldset>
+      <legend>Your Orders</legend>
+      Smosa (Rs. 10): <input type="text" id="smosa" /> <br />
+      Kachori (Rs. 12): <input type="text" id="kachori" /><br />
+      barfi (Rs. 8): <input type="text" id="barfi" /><br />
+      coke (250ml) (Rs. 30): <input type="text" id="coke" /><br />
+     </fieldset>
+    </div>
+   </div>
+
+   <div class="container">
+    <fieldset>
+     <legend>Your Bill</legend>
+     <h3>Your Name:<span id="name2"></span></h3>
+     <h3>Email: <span id="email2"></span></h3>
+     <h3>Mobile: <span id="mobile2"></span></h3>
+     <table border="1">
+      <thead>
+       <tr>
+        <th>Menu</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Amout</th>
+       </tr>
+      </thead>
+      <tbody id="bill">
+       
+      </tbody>
+     </table>
+    </fieldset>
+    <h2>Total Amout: Rs. <span id="amount">0</span></h2>
+   </div>
+  </div>
+  <script>
+    var smosa_price=10, kachori_price=12,vadapav_price=60, maggie_price=50;
+    var smosa_q=0, kachori_q=0;
+    var name,email;
+    var spsh="",kpsh="";
+    document.getElementById("name").addEventListener("keyup",function(){
+name = document.getElementById("name").value;
+document.getElementById("name2").innerHTML=name;
+//console.log(name); 
+    });
+    document.getElementById("email").addEventListener("keyup",function(){
+name = document.getElementById("email").value;
+document.getElementById("email2").innerHTML=name;
+    });
+
+    document.getElementById("mobile").addEventListener("keyup",function(){
+name = document.getElementById("mobile").value;
+document.getElementById("mobile2").innerHTML=name;
+    });
+
+    document.getElementById("smosa").addEventListener("keyup",function(){
+       if(this.value==""|| this.value==0){
+        spsh ="";
+        ShowBill();       
+}
+       
+       else{
+        smosa_q=this.value
+   spsh = "<tr><td>Smosa</td><td>Rs. "+smosa_price+"</td><td>"+smosa_q+"</td><td>"+smosa_price+"x"+smosa_q+"="+smosa_price*smosa_q+"</td></tr>";
+   ShowBill();       
+}       
+});
+
+document.getElementById("kachori").addEventListener("keyup",function(){
+       if(this.value==""|| this.value==0){
+        kpsh="";
+        ShowBill();       
+}
+       
+       else{
+        kachori_q=this.value
+    kpsh = "<tr><td>kachori</td><td>Rs. "+kachori_price+"</td><td>"+kachori_q+"</td><td>"+kachori_price+"x"+kachori_q+"="+kachori_price*kachori_q+"</td></tr>";
+    ShowBill();       
+}
+});
+function ShowBill(){
+    document.getElementById("bill").innerHTML=spsh+kpsh;
+    document.getElementById("amount").innerHTML=smosa_price*smosa_q+kachori_price*kachori_q;
+}
+  </script>
+ </body>
+</html>
